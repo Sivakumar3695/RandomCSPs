@@ -10,6 +10,7 @@ class RandomGenerationMain
 	int d = 0;
 	float p2 = 0;
 	int m = 0;
+	int model = 0;
 
 	Random random = new Random();
 	String[] variableArr;
@@ -34,13 +35,13 @@ class RandomGenerationMain
 		System.out.println("Please choose the model for random CSP generation...");
 		System.out.println("1. Model B\n2. Model D\n3. Model RD\n4. Model RB\nPlease select Random CSP model:");
 
-		int model = inputScanner.nextInt();
+		randomGenerationInstance.model = inputScanner.nextInt();
 
 //		System.out.println("[Enter alpha value: (d=n^alpha)] alpha: ");
 //		float alpha = inputScanner.nextFloat();
 //		int d = Integer.valueOf(String.valueOf(Math.round(Math.pow(variables, alpha))));
 
-		switch(model)
+		switch(randomGenerationInstance.model)
 		{
 			case 1://B model
 				System.out.println("(Enter Domain size) d: ");
@@ -287,7 +288,7 @@ class RandomGenerationMain
 		{
 			int constraintIndex = random.nextInt(n);
 			String constraintVar = variableArr[constraintIndex];
-			if (constraintVarList.contains(constraintVar))
+			if (constraintVarList.contains(constraintVar) && (model == 1 || model == 2))//only for model B and model D, constrain var scope is selected without repetition
 			{
 				continue;
 			}
